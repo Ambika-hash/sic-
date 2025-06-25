@@ -1,0 +1,39 @@
+#Find smallest of 3 distinct numbers
+a = int(input())
+b = int(input())
+c = int(input())
+# if a<b and a<c:
+#     print(a, "is the smallest")
+# elif b<c and b<a:
+#     print(b, "number is the smallest")
+# else:
+#     print(c, "number is the smallest")
+print(min(a, b, c), "is the smallest of the three")
+
+
+a = int(input("Check if a +ve integer is Perfect square: "))
+b = int(a**0.5)
+if (b**2 == a):
+    print(a, "is Perfect square")
+else:
+    print(a, "is not Perfect square")
+
+
+ a = int(input("Check if a year is Leap year: "))
+if (a % 4 == 0 and (a % 100 != 0 or a % 400 == 0)):
+    print(a, "is a leap year")
+else:
+    print(a, "is not a leap year")
+------------------------------------------------------------------------------------
+      Simplicity and Clarity
+Python emphasizes readability and simplicity. The ++ and -- operators, while concise, can sometimes lead to less readable code. Instead of using these operators, Python encourages the use of more explicit expressions like i += 1 or i -= 1, which are clearer to someone reading the code.
+
+Immutable Integers
+In Python, integers are immutable, meaning that when you modify an integer’s value, a new integer object is created. The ++ and -- operators, which work by directly modifying the variable’s value in place, don’t align well with Python’s design philosophy.
+
+Consistency
+Python’s philosophy emphasizes "There should be one—and preferably only one—obvious way to do it", as stated in the Zen of Python (PEP 20). The language avoids multiple ways of performing the same operation, opting instead for consistency. By sticking with i += 1 and i -= 1, Python maintains a consistent and predictable syntax.
+
+Avoiding Errors
+In other languages, the ++ and -- operators can be used in both prefix (e.g., ++i) and postfix (e.g., i++) forms, which can lead to confusion about when the increment or decrement happens. Python eliminates this potential source of bugs by not supporting these operators at all.
+  
