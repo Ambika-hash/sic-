@@ -2,9 +2,10 @@
 n = int(input("Enter N (term) value: "))
 m = int(input("Enter the M value: "))
 sum_of_term = 0
+sign = -1
 for i in range(m):
     numerator =  n**2**i
     denominator = 2 * i + 1
-    sign = -1**i
+    sign = (-1)* sig
     sum_of_term = numerator / denominator * sign
 print(sum_of_term) 
