@@ -6,6 +6,7 @@ sign = -1
 for i in range(m):
     numerator =  n**2**i
     denominator = 2 * i + 1
-    sign = (-1)* sig
+    sign = (-1)* sign
     sum_of_term = numerator / denominator * sign
 print(sum_of_term) 
+
