@@ -44,9 +44,14 @@ def read_all_employees():
     except:
         print('Rows retrival failed')
 def add_to_table():
-    query = "insert into table employees values("Rama") "
+    query = "insert into employees values(Null,'Rmya','Team Lead', 7062395510, 90000, 2.1, 4,'Mongodb')"
+    connection =connect_db()
+    cursor = connection.cursor()
+    cursor.execute(query)
+    print("Value added")
 connection = connect_db()
-create_table()
-read_all_employees()
+add_to_table()
+# create_table()
+# read_all_employees()
 disconnect_db(connection)
 # connection.close() # to disconnect the DB
