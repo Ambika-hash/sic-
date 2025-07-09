@@ -3,11 +3,8 @@ start_time = time.time()
 def quick_sort(arr, low, high):
     if low < high:
         pivot_index = partition(arr, low, high)
-        # print("partition", arr)
         quick_sort(arr, low, pivot_index - 1)
-        # print("1", arr)
         quick_sort(arr, pivot_index + 1 ,high)
-        # print("2", arr)
     return arr
 def partition(arr, low, high):
     pivot_index = arr[high]

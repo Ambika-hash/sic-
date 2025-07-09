@@ -24,13 +24,13 @@ def create_table():
         cursor.execute(query)
         print('Table created')
         cursor.close()
-        disconnect_db(connection)
+        # disconnect_db(connection)
     except:
         print('Table creation failed')
 
-def read_all_employees():
+def read_all_employees(connection):
     query = 'select * from employees'
-    connection = connect_db()
+    # connection = connect_db()
     try:
         cursor = connection.cursor()
         cursor.execute(query)
@@ -40,18 +40,19 @@ def read_all_employees():
         print('All rows retrived')
         
         cursor.close()
-        disconnect_db(connection)
+        # disconnect_db(connection)
     except:
         print('Rows retrival failed')
-def add_to_table():
-    query = "insert into employees values(Null,'Rmya','Team Lead', 7062395510, 90000, 2.1, 4,'Mongodb')"
-    connection =connect_db()
+def add_to_table(connection):
+    query = "insert into employees values(Null,'Rahul','Team Lead', 7062395520, 90000, 2.1, 4,'Mongodb')"
+    # connection = connect_db()
     cursor = connection.cursor()
     cursor.execute(query)
     print("Value added")
 connection = connect_db()
-add_to_table()
+add_to_table(connection)
 # create_table()
-# read_all_employees()
+read_all_employees(connection)
+connection.commit()
 disconnect_db(connection)
-# connection.close() # to disconnect the DB
+# connection.close() # to disconnect the DB.
