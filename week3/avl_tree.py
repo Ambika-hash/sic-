@@ -6,36 +6,73 @@ delete node
 '''
 
 class Node:
-    def __init__(self, data = 0):
+    def __init__(self, data=0):
         if data == 0:
             data = int(input('Enter data of the node: '))
         self.left = None
-        self.data = data
         self.right = None
+        self.data = data
+        self.height = 1 
+
 
 class BST:
     def __init__(self):
         self.root = None
         print('An empty BST is created')
+    def get_height(self, node):
+        if not node:
+            return 0
+        return node.height
+
+    def get_balance(self, node):
+        if not node:
+            return 0
+        return self.get_height(node.left) - self.get_height(node.right)
+
+    def update_height(self, node):
+        node.height = 1 + max(self.get_height(node.left), self.get_height(node.right))
+
 
     def add_node(self):
-        new_node = Node() # create a new Node object
-        if self.root == None: # check if the tree is empty
-            self.root = new_node
-            return
-        temp1 = self.root
-        temp2 = None
-        while temp1 != None:
-            temp2 = temp1
-            if new_node.data < temp1.data:
-                temp1 = temp1.left
-            else:
-                temp1 = temp1.right
-        if new_node.data < temp2.data:
-            temp2.left = new_node
-        else:
-            temp2.right = new_node
+    data = int(input('Enter data of the node: '))
+    self.root = self._add_node(self.root, data)
 
+def _add_node(self, node, data):
+    # Step 1: Normal BST insert
+    if not node:
+        return Node(data)
+    elif data < node.data:
+        node.left = self._add_node(node.left, data)
+    else:
+        node.right = self._add_node(node.right, data)
+
+    # Step 2: Update height
+    self.update_height(node)
+
+    # Step 3: Get balance factor
+    balance = self.get_balance(node)
+
+    # Step 4: Perform rotations if unbalanced
+
+    # Left Left
+    if balance > 1 and data < node.left.data:
+        return self.rotate_right(node)
+
+    # Right Right
+    if balance < -1 and data > node.right.data:
+        return self.rotate_left(node)
+
+    # Left Right
+    if balance > 1 and data > node.left.data:
+        node.left = self.rotate_left(node.left)
+        return self.rotate_right(node)
+
+    # Right Left
+    if balance < -1 and data < node.right.data:
+        node.right = self.rotate_right(node.right)
+        return self.rotate_left(node)
+
+    return node
     def in_order(self, temp):
         if temp == None:
             #print('Tree is empty')
