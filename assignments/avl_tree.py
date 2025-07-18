@@ -1,0 +1,222 @@
+'''
+add node
+search node
+list tree (inorder / preorder / postorder)
+delete node
+'''
+
+class Node:
+    def __init__(self, data=0):
+        if data == 0:
+            data = int(input('Enter data of the node: '))
+        self.left = None
+        self.right = None
+        self.data = data
+        self.height = 1 
+
+
+class BST:
+    def __init__(self):
+        self.root = None
+        print('An empty BST is created')
+    def get_height(self, node):
+        if not node:
+            return 0
+        return node.height
+
+    def get_balance(self, node):
+        if not node:
+            return 0
+        return self.get_height(node.left) - self.get_height(node.right)
+
+    def update_height(self, node):
+        node.height = 1 + max(self.get_height(node.left), self.get_height(node.right))
+
+
+    def add_node(self):
+    data = int(input('Enter data of the node: '))
+    self.root = self._add_node(self.root, data)
+
+def _add_node(self, node, data):
+    # Step 1: Normal BST insert
+    if not node:
+        return Node(data)
+    elif data < node.data:
+        node.left = self._add_node(node.left, data)
+    else:
+        node.right = self._add_node(node.right, data)
+
+    # Step 2: Update height
+    self.update_height(node)
+
+    # Step 3: Get balance factor
+    balance = self.get_balance(node)
+
+    # Step 4: Perform rotations if unbalanced
+
+    # Left Left
+    if balance > 1 and data < node.left.data:
+        return self.rotate_right(node)
+
+    # Right Right
+    if balance < -1 and data > node.right.data:
+        return self.rotate_left(node)
+
+    # Left Right
+    if balance > 1 and data > node.left.data:
+        node.left = self.rotate_left(node.left)
+        return self.rotate_right(node)
+
+    # Right Left
+    if balance < -1 and data < node.right.data:
+        node.right = self.rotate_right(node.right)
+        return self.rotate_left(node)
+
+    return node
+    def in_order(self, temp):
+        if temp == None:
+            #print('Tree is empty')
+            return
+        self.in_order(temp.left)
+        print(temp.data, end = '  ')
+        self.in_order(temp.right)
+    
+    def pre_order(self, temp):
+        if temp != None:
+            print(temp.data, end = '  ')
+            self.pre_order(temp.left)
+            self.pre_order(temp.right)
+
+    def post_order(self, temp):
+        if temp == None:
+            return
+        self.post_order(temp.left)
+        self.post_order(temp.right)
+        print(temp.data, end = '  ')
+
+    def search_node(self, temp, search_data):
+        found = False
+        if temp != None:
+            if temp.data == search_data:
+                return True
+            found = self.search_node(temp.left, search_data)
+            if found:
+                return found
+            found = self.search_node(temp.right, search_data)
+        return found
+    
+    # def delete_node(self, temp, delete_data):
+    #     if temp is None:
+    #         return temp
+
+    #     if delete_data < temp.data:
+    #         temp.left = self.delete_node(temp.left, delete_data)
+    #     elif delete_data > temp.data:
+    #         temp.right = self.delete_node(temp.right, delete_data)
+    #     else:
+    #         print(f"Deleting node: {temp.data}")  # Debug print
+    #         # Node found
+    #         if temp.left is None:
+    #             return temp.right
+    #         elif temp.right is None:
+    #             return temp.left
+
+    #         # Node with two children
+    #         successor = self.find_min(temp.right)
+    #         temp.data = successor.data
+    #         temp.right = self.delete_node(temp.right, successor.data)
+
+    #     return temp
+
+    # # def delete_node(self, temp, delete_data):
+    # #     found = False
+    # #     if temp != None:
+    # #         if temp.data == delete_data:
+    # #             return True
+    # #         found = self.search_node(temp.left, delete_data)
+    # #         if found:
+    # #             return found
+    # #         found = self.search_node(temp.right, delete_data)
+
+    # def find_min(self, node):
+    #     current = node
+    #     while current.left is not None:
+    #         current = current.left
+    #     return current
+    def tree_height(self, temp):
+        if temp is None:
+            return -1 
+        left_height = self.tree_height(temp.left)
+        right_height = self.tree_height(temp.right)
+        return 1 + max(left_height, right_height)
+
+
+
+                
+    
+
+class Menu:
+    def __init__(self):
+        self.choice = 0
+
+    def is_tree_empty(self, bst):
+        if bst.root == None:
+            print('Tree is empty')
+            return True
+        return False
+
+    def menu(self, bst):
+        match self.choice:
+            case 1 : bst.add_node()
+            case 2 :
+                if self.is_tree_empty(bst):
+                    return
+                search_data = int(input('Enter data of the node to be serached: '))
+                found = bst.search_node(bst.root, search_data)
+                if found:
+                    print(f'Node with data {search_data} found')
+                else:
+                    print(f'Node with data {search_data} not found')
+            case 3 : 
+                if self.is_tree_empty(bst):
+                    return
+                bst.in_order(bst.root)
+            case 4 : 
+                if self.is_tree_empty(bst):
+                    return
+                bst.pre_order(bst.root)
+            case 5 : 
+                if self.is_tree_empty(bst):
+                    return
+                bst.post_order(bst.root)
+            case 6 : 
+                if self.is_tree_empty(bst):
+                    return
+                delete_data = int(input('Enter data of the node to be deleted: '))
+                bst.delete_node(bst.root, delete_data)
+            case 7: 
+                if self.is_tree_empty(bst):
+                    return
+                # search_data = int(input('Enter data of the node to be serached: '))
+                else:
+                    print(bst.tree_height(bst.root))
+                # if found:
+                #     print(f'Node with data {search_data} found')
+                # else:
+                #     print(f'Node with data {search_data} not found')
+            case 8 : self.choice = 0
+            case _ : print('Invalid choice')
+
+    
+    def start_app(self):
+        bst = BST()
+        while True:
+            print('1:Add 2:Search 3:Inorder 4:PreOrder 5:PostOrder 6:Delete 7: Tree Height 8:Exit')
+            self.choice = int(input('Enter your choice: '))
+            self.menu(bst)
+            if self.choice == 0:
+                print('Application closed')
+                break
+                
+menu = Menu()
+menu.start_app()
