@@ -1,0 +1,29 @@
+SyntaxError – Raised when the Python code has incorrect syntax.
+
+IndentationError – Raised when there's a problem with the code indentation.
+
+NameError – Raised when a variable or function name is not defined.
+
+TypeError – Raised when an operation or function is applied to an inappropriate type.
+
+ValueError – Raised when a function receives a correct type but an inappropriate value.
+
+ZeroDivisionError – Raised when a number is divided by zero.
+
+IndexError – Raised when trying to access an index that’s out of range.
+
+KeyError – Raised when trying to access a dictionary key that doesn’t exist.
+
+FileNotFoundError – Raised when a file or directory is requested but doesn’t exist.
+
+AttributeError – Raised when an object doesn’t have the requested attribute.
+
+ImportError – Raised when a module or its member can’t be imported.
+
+ModuleNotFoundError – A subclass of ImportError, raised when the module isn’t found.
+
+RuntimeError – Raised when an error is detected that doesn't fall into any specific category.
+
+RecursionError – Raised when the maximum recursion depth is exceeded.
+
+EOFError – Raised when input() hits an end-of-file condition (e.g., no input provided).
